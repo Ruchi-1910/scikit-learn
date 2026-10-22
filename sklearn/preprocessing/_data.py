@@ -1025,8 +1025,16 @@ class StandardScaler(
 
             else:
                 # Retain previous statistics to prevent all-NaN batch overwrites
-                prev_var = None if first_call or self.var_ is None else xp.asarray(self.var_, copy=True)
-                prev_mean = None if first_call or self.mean_ is None else xp.asarray(self.mean_, copy=True)
+                prev_var = (
+                    None
+                    if first_call or self.var_ is None
+                    else xp.asarray(self.var_, copy=True)
+                )
+                prev_mean = (
+                    None
+                    if first_call or self.mean_ is None
+                    else xp.asarray(self.mean_, copy=True)
+                )
 
                 self.mean_, self.var_, self.n_samples_seen_ = _incremental_mean_and_var(
                     X,

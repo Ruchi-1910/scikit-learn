@@ -2990,6 +2990,8 @@ def test_standard_scaler_callback_support(fit_method):
     task_end_record = [rec for rec in cb.record if rec["name"] == "on_fit_task_end"][0]
     fitted_scaler = task_end_record["kwargs"]["fitted_estimator"]
     assert_allclose(fitted_scaler.transform(X), Xt)
+
+
 def test_standard_scaler_partial_fit_all_nan_variance():
     # Initial fit with valid data
     X_init = np.array([[1.0, 2.0], [3.0, 4.0]])
